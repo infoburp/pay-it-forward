@@ -57,7 +57,7 @@ var svg = d3.select("body").append("svg")
 d3.csv("breakdowntestdata.csv", function(error, data) {
 
   data.forEach(function(d) {
-    d.population = +d.population;
+    d.expense_amount = +d.expense_amount;
   });
 
   var g = svg.selectAll(".arc")
@@ -67,13 +67,13 @@ d3.csv("breakdowntestdata.csv", function(error, data) {
 
   g.append("path")
       .attr("d", arc)
-      .style("fill", function(d) { return color(d.data.age); });
+      .style("fill", function(d) { return color(d.data.expense_name); });
 
   g.append("text")
       .attr("transform", function(d) { return "translate(" + arc.centroid(d) + ")"; })
       .attr("dy", ".35em")
       .style("text-anchor", "middle")
-      .text(function(d) { return d.data.age; });
+      .text(function(d) { return d.data.expense_name; });
 
 });
 
